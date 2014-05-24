@@ -51,10 +51,9 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="55dp"
             android:layout_marginRight="15dp"
-            android:text="@string/zero"
             android:textSize="45sp"
             android:gravity="right|bottom"
-            android:paddingBottom="5dp" />
+            android:paddingBottom="10dp" />
             
     </RelativeLayout>
      

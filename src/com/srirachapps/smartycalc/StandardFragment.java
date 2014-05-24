@@ -44,6 +44,22 @@ public class StandardFragment extends Fragment implements OnClickListener {
 	}
 	
 	/*
+	 * This method is just before updating the display with new text to ensure it fits
+	 * on the screen.
+	 */
+	private void formatTextSize() {
+		if(getNumberPanel().length() < 10) {
+			mNumberPanel.setTextSize(45);
+		}
+		else if(getNumberPanel().length() < 15){
+			mNumberPanel.setTextSize(35);
+		}
+		else {
+			mNumberPanel.setTextSize(23);
+		}
+	}
+	
+	/*
 	 * Every time a digit button is pressed this is called.
 	 * @param: Integer digit: The digit that was pressed.
 	 */
@@ -63,6 +79,7 @@ public class StandardFragment extends Fragment implements OnClickListener {
 				mRhs = mRhs*10+digit;
 			setNumberPanel(mRhs);
 		}
+		formatTextSize();
 	}
 	
 	/*
@@ -170,8 +187,13 @@ public class StandardFragment extends Fragment implements OnClickListener {
 			setNumberPanel(mTotal);
 			break;
 		}
+		formatTextSize();
 	}
 	
+	/*
+	 * This is called when AC is pressed.
+	 * Resets all calculator data to default values.
+	 */
 	private void allClearPressed() {
 		// Set the computation values to default 0.
 		mTotal = 0.;
@@ -183,6 +205,8 @@ public class StandardFragment extends Fragment implements OnClickListener {
 		
 		// No function has been pressed yet.
 		mFunctionPressed = -1;
+		
+		formatTextSize();
 	}
 	
 	/*
@@ -192,6 +216,10 @@ public class StandardFragment extends Fragment implements OnClickListener {
 	private void setNumberPanel(Double number) {
 		// TODO: format number.
 		mNumberPanel.setText(number.toString());
+	}
+	
+	private String getNumberPanel() {
+		return mNumberPanel.getText().toString();
 	}
 
 	/*
